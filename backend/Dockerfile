@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Копируем зависимости проекта
-COPY requirements.txt /app/
+COPY backend/requirements.txt /app/
 
 # Устанавливаем зависимости Python
 RUN pip install --upgrade pip
