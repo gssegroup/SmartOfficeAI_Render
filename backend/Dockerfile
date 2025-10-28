@@ -17,8 +17,8 @@ COPY backend/requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt || true
 
-# Копируем код из backend
-COPY backend .
+# Копируем весь код backend
+COPY backend /app
 
-# Запускаем сервер FastAPI
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "10000"]
+# Указываем команду запуска сервера FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
