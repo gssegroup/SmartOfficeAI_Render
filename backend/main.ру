@@ -3,5 +3,5 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def root():
-    return {"message": "✅ SmartOffice backend is running successfully on Railway!"}
+def read_root():
+    return {"message": "✅ SmartOffice backend is running successfully!"}
