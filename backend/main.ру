@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "SmartOffice Backend is running!"}
+    return {"message": "✅ SmartOffice backend is running successfully on Railway!"}
