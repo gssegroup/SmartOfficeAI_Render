@@ -12,4 +12,4 @@ COPY ./backend /app/backend
 ENV PYTHONPATH=/app
 
 # Запуск сервера
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
