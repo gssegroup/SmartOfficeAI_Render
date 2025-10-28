@@ -18,10 +18,10 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt || true
 
 # Копируем весь код backend
-COPY backend /app
+COPY backend /app/backend
 
-# Ставим рабочую директорию /app
-WORKDIR /app
+# Устанавливаем рабочую директорию именно в backend
+WORKDIR /app/backend
 
-# Команда запуска сервера FastAPI
+# Команда запуска FastAPI
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
