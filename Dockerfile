@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# скопировать весь проект (включая backend)
 COPY . .
 
 ENV PYTHONPATH=/app
