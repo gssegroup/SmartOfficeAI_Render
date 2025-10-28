@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Копируем зависимости проекта
-COPY backend/requirements.txt .
+COPY backend/requirements.txt /app
 
 # Устанавливаем зависимости Python
 RUN pip install --upgrade pip
@@ -20,5 +20,8 @@ RUN pip install -r requirements.txt || true
 # Копируем весь код backend
 COPY backend /app
 
-# Указываем команду запуска сервера FastAPI
+# Ставим рабочую директорию именно /app (где лежит main.py)
+WORKDIR /app
+
+# Команда запуска сервера FastAPI
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
