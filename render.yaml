@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: smartoffice-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    autoDeploy: true
+  - type: web
+    name: smartoffice-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run start"
+  - type: worker
+    name: smartoffice-bot
+    env: docker
+    dockerfilePath: ./bot/Dockerfile
+    autoDeploy: true
