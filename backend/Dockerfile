@@ -1,19 +1,24 @@
-# Dockerfile для backend SmartOfficeAI
-FROM python:3.11-slim
+# Используем официальный образ Python
+FROM python:3.10-slim
 
+# Устанавливаем системные зависимости
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && apt-get clean
+
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Встановлюємо системні бібліотеки, потрібні для PDF і шаблонів
-RUN apt-get update && apt-get install -y \
-    libpq-dev gcc wkhtmltopdf && \
-    pip install --upgrade pip
+# Копируем зависимости проекта
+COPY requirements.txt /app/
 
-# Копіюємо усі файли бекенду в контейнер
+# Устанавливаем зависимости Python
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt || true
+
+# Копируем весь код backend
 COPY . /app
 
-# Встановлюємо залежності
-RUN pip install fastapi uvicorn jinja2 pdfkit psycopg2-binary python-multipart
-
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Указываем команду запуска сервера FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
