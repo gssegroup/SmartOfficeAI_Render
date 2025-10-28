@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Копируем зависимости проекта
-COPY requirements.txt.
+COPY requirements.txt .
 
 # Устанавливаем зависимости Python
 RUN pip install --no-cache-dir --upgrade pip
