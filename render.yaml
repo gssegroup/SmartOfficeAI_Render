@@ -1,17 +1,12 @@
 services:
   - type: web
     name: smartoffice-backend
-    env: docker
-    dockerfilePath: ./backend/Dockerfile
-    autoDeploy: true
-  - type: web
-    name: smartoffice-frontend
-    env: node
-    rootDir: frontend
-    buildCommand: "npm install && npm run build"
-    startCommand: "npm run start"
-  - type: worker
-    name: smartoffice-bot
-    env: docker
-    dockerfilePath: ./bot/Dockerfile
-    autoDeploy: true
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+    rootDir: .
+    dockerfilePath: ./Dockerfile
