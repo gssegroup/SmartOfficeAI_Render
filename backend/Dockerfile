@@ -21,4 +21,4 @@ RUN pip install -r requirements.txt || true
 COPY . /app
 
 # Указываем команду запуска сервера FastAPI
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
